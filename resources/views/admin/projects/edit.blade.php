@@ -38,6 +38,14 @@
                         <label for="image">Image</label>
                         <input type="file" name="image" id="image" value="{{$project->image}}">
                     </div>
+                    <div class="col-12 d-flex flex-column">
+                        @foreach ($allTecnologies as $tech)
+                            <div>
+                                <input type="checkbox" name="{{$tech->id}}" id="{{$tech->name}}">
+                                <label for="{{$tech->id}}">{{$tech->name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
                     <div class="col-12 d-flex justify-content-center">
                         <button type="submit">Invia</button>
                     </div>

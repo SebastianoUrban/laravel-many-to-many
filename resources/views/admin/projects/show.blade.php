@@ -32,6 +32,13 @@
             <h5>Image:</h5>
             <img src="{{ asset('storage/' . $project->image)}}" alt="">
         </div>
+        <div class="col-12">
+            <ul>
+                @foreach ($allTecnologies as $tech)
+                    <li>{{$tech->name}}</li>
+                @endforeach
+            </ul>
+        </div>
     </div>
 </div>
 @endsection

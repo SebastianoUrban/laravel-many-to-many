@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Tecnology;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
@@ -89,7 +90,8 @@ class ProjectsController extends Controller
      */
     public function show($id) {
         $project = Project::find($id);
-        return view('admin.projects.show', compact('project'));
+        $allTecnologies = Tecnology::all();
+        return view('admin.projects.show', compact('project'), compact('allTecnologies'));
     }
 
     /**
@@ -99,7 +101,8 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project) {
-        return view('admin.projects.edit', compact('project'));
+        $allTecnologies = Tecnology::all();
+        return view('admin.projects.edit', compact('project'), compact('allTecnologies'));
     }
 
     /**
@@ -111,7 +114,10 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Project $project) {
         $data = $request->all();
+        dd($data);
         $project->update($data);
+
+        //$project->tecnology()->attach();
 
         return redirect()->route('admin.projects.show', $project->id);
     }
