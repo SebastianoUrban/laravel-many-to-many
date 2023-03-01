@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Database\Seeders\ProjectsTableSeeder;
 use Database\Seeders\TypeSeeder;
+use Database\Seeders\TecnologySeeder;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,7 +20,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             TypeSeeder::class,
-            ProjectsTableSeeder::class
+            ProjectsTableSeeder::class,
+            TecnologySeeder::class
         ]);
     }
 }
