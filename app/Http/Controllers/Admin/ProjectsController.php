@@ -107,8 +107,7 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project) {
-        $allTecnologies = Tecnology::all();
-        return view('admin.projects.edit', compact('project'), compact('allTecnologies'));
+        return view('admin.projects.edit', ["project" => $project, 'tecnologies' => Tecnology::all() ]);
     }
 
     /**
@@ -120,8 +119,9 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Project $project) {
         $data = $request->all();
-        dd($data);
+        //dd($data);
         $project->update($data);
+        $project->tecnologies()->sync($data['tecnologies']);
 
         //$project->tecnology()->attach();
 

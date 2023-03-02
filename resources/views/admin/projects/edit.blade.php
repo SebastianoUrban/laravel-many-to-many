@@ -38,11 +38,14 @@
                         <label for="image">Image</label>
                         <input type="file" name="image" id="image" value="{{$project->image}}">
                     </div>
-                    <div class="col-12 d-flex flex-column">
-                        @foreach ($allTecnologies as $tech)
-                            <div>
-                                <input type="checkbox" name="{{$tech->id}}" id="{{$tech->name}}">
-                                <label for="{{$tech->id}}">{{$tech->name}}</label>
+                    <div class="col-12">
+                        @foreach ($tecnologies as $tecnology)
+                            <div class="single-tag d-flex align-items-center">
+                                <input type="checkbox" class="form-check-input" name="tecnologies[]" 
+                                value="{{ $tecnology->id }}"
+                                @checked($project->tecnologies->contains($tecnology->id))>
+            
+                                <label class="form-check-label ms-2">{{ $tecnology->name }}</label>
                             </div>
                         @endforeach
                     </div>
