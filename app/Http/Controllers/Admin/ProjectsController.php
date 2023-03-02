@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Tecnology;
+use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
@@ -27,7 +28,7 @@ class ProjectsController extends Controller
      */
     public function create() {
         //return view('admin.projects.create');
-        return view('admin.projects.create', ["project" => new Project(), 'tecnologies' => Tecnology::all() ]);
+        return view('admin.projects.create', ["project" => new Project(), 'tecnologies' => Tecnology::all(), 'types' => Type::all() ]);
     }
 
     /**
@@ -80,6 +81,7 @@ class ProjectsController extends Controller
         $newProject->description = $data['description'];
         $newProject->image = Storage::put('uploads', $data['image']);;
         $newProject->type_id = 1;
+        $newProject->type_id = $data['type_id'];
 
         $newProject->save();
 
@@ -107,7 +109,7 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Project $project) {
-        return view('admin.projects.edit', ["project" => $project, 'tecnologies' => Tecnology::all() ]);
+        return view('admin.projects.edit', ["project" => $project, 'tecnologies' => Tecnology::all(), 'types' => Type::all() ]);
     }
 
     /**

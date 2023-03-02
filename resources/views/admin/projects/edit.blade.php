@@ -39,6 +39,22 @@
                         <input type="file" name="image" id="image" value="{{$project->image}}">
                     </div>
                     <div class="col-12">
+                        <label for="project_type" class="form-label">
+                            Project Type: 
+                        </label>
+                
+                        <select  class="form-control" id="project_type" name="type_id" >
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}" {{ old('type_id', $project->type_id) ==  $type->id ? 'selected' : '' }}>
+                
+                                    <span >
+                                        {{ $type->name }}
+                                    </span>
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-12">
                         @foreach ($tecnologies as $tecnology)
                             <div class="single-tag d-flex align-items-center">
                                 <input type="checkbox" class="form-check-input" name="tecnologies[]" 

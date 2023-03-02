@@ -33,6 +33,10 @@
             <img src="{{ asset('storage/' . $project->image)}}" alt="">
         </div>
         <div class="col-12">
+            <h5>Type:</h5>
+            <p class="ms-2">{{$project->type->name}}</p>
+        </div>
+        <div class="col-12">
             @foreach ($project->tecnologies as $tecnology)
                 <span class="p-2 badge rounded-pill"
                 style="background-color: violet; color: white"> #{{ $tecnology->name }}</span>
