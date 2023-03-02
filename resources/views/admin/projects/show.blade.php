@@ -33,11 +33,10 @@
             <img src="{{ asset('storage/' . $project->image)}}" alt="">
         </div>
         <div class="col-12">
-            <ul>
-                @foreach ($allTecnologies as $tech)
-                    <li>{{$tech->name}}</li>
-                @endforeach
-            </ul>
+            @foreach ($project->tecnologies as $tecnology)
+                <span class="p-2 badge rounded-pill"
+                style="background-color: violet; color: white"> #{{ $tecnology->name }}</span>
+            @endforeach
         </div>
     </div>
 </div>
