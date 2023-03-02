@@ -26,7 +26,8 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('admin.projects.create');
+        //return view('admin.projects.create');
+        return view('admin.projects.create', ["project" => new Project(), 'tecnologies' => Tecnology::all() ]);
     }
 
     /**
@@ -37,6 +38,7 @@ class ProjectsController extends Controller
      */
     public function store(Request $request) {
         $data = $request->all();
+        //dd($data);
 
         $request->validate([
             'title' => 'required|string|min:2|max:200',
@@ -44,7 +46,8 @@ class ProjectsController extends Controller
             'end_date' => 'required',
             'place' => 'required|string|min:2|max:200',
             'description' => 'required|string|min:2',
-            'image' => 'image'
+            'image' => 'image',
+            'tecnologies' => 'required'
         ],
         [
             'title.required' => 'Il campo TITOLO è obbligatorio!',
@@ -76,8 +79,11 @@ class ProjectsController extends Controller
         $newProject->place = $data['place'];
         $newProject->description = $data['description'];
         $newProject->image = Storage::put('uploads', $data['image']);;
+        $newProject->type_id = 1;
 
         $newProject->save();
+
+        $newProject->tecnologies()->sync($data['tecnologies']);
         
         return redirect()->route('admin.projects.show', $newProject->id);
     }
